@@ -1,0 +1,209 @@
+[
+  {
+    "id": "py-requests",
+    "name": "requests",
+    "description": "Requests HTTP library",
+    "import_gate": ["import requests", "from requests"],
+    "detections": [
+      { "match": "requests.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "requests.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "requests.put(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "requests.delete(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "requests.patch(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-httpx",
+    "name": "httpx",
+    "description": "HTTPX async/sync HTTP client",
+    "import_gate": ["httpx"],
+    "detections": [
+      { "match": "httpx.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpx.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpx.AsyncClient(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "py-aiohttp",
+    "name": "aiohttp",
+    "description": "aiohttp async HTTP client",
+    "import_gate": ["aiohttp", "ClientSession"],
+    "detections": [
+      { "match": "ClientSession(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "none" },
+      { "match": "session.get(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" },
+      { "match": "session.post(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-pika",
+    "name": "pika",
+    "description": "RabbitMQ AMQP client",
+    "import_gate": ["pika"],
+    "detections": [
+      { "match": "basic_publish(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "named_arg:routing_key" },
+      { "match": "basic_consume(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "named_arg:queue" },
+      { "match": "queue_declare(", "kind": "connection", "protocol": "amqp", "confidence": "medium", "target_extraction": "named_arg:queue" }
+    ]
+  },
+  {
+    "id": "py-confluent-kafka",
+    "name": "confluent-kafka",
+    "description": "Confluent Kafka client",
+    "import_gate": ["confluent_kafka"],
+    "detections": [
+      { "match": "Producer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": "Consumer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": ".produce(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".subscribe(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-celery",
+    "name": "Celery",
+    "description": "Distributed task queue",
+    "import_gate": ["celery", "Celery"],
+    "detections": [
+      { "match": "Celery(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "named_arg:broker" },
+      { "match": ".send_task(", "kind": "connection", "protocol": "celery", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".delay(", "kind": "connection", "protocol": "celery", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "py-nats",
+    "name": "nats-py",
+    "description": "NATS messaging client",
+    "import_gate": ["nats"],
+    "detections": [
+      { "match": "nats.connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".publish(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".subscribe(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-redis",
+    "name": "redis-py",
+    "description": "Redis client",
+    "import_gate": ["import redis", "from redis"],
+    "detections": [
+      { "match": "Redis(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "StrictRedis(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "from_url(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-asyncpg",
+    "name": "asyncpg",
+    "description": "Async PostgreSQL client",
+    "import_gate": ["asyncpg"],
+    "detections": [
+      { "match": "asyncpg.connect(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "asyncpg.create_pool(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-psycopg2",
+    "name": "psycopg2",
+    "description": "PostgreSQL adapter",
+    "import_gate": ["psycopg2"],
+    "detections": [
+      { "match": "psycopg2.connect(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-sqlalchemy",
+    "name": "SQLAlchemy",
+    "description": "SQL toolkit and ORM",
+    "import_gate": ["sqlalchemy", "create_engine"],
+    "detections": [
+      { "match": "create_engine(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-motor",
+    "name": "motor",
+    "description": "Async MongoDB driver",
+    "import_gate": ["motor"],
+    "detections": [
+      { "match": "AsyncIOMotorClient(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "MotorClient(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-pymongo",
+    "name": "pymongo",
+    "description": "MongoDB driver",
+    "import_gate": ["pymongo"],
+    "detections": [
+      { "match": "MongoClient(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-grpc",
+    "name": "grpcio",
+    "description": "gRPC client",
+    "import_gate": ["_pb2_grpc", "grpc"],
+    "detections": [
+      { "match": "Stub(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" },
+      { "match": "insecure_channel(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-boto3-sqs",
+    "name": "AWS SQS (boto3)",
+    "description": "AWS Simple Queue Service",
+    "import_gate": ["boto3"],
+    "detections": [
+      { "match": "client('sqs')", "kind": "connection", "protocol": "sqs", "confidence": "high", "target_extraction": "none" },
+      { "match": "resource('sqs')", "kind": "connection", "protocol": "sqs", "confidence": "high", "target_extraction": "none" },
+      { "match": "send_message(", "kind": "connection", "protocol": "sqs", "confidence": "medium", "target_extraction": "named_arg:QueueUrl" }
+    ]
+  },
+  {
+    "id": "py-boto3-sns",
+    "name": "AWS SNS (boto3)",
+    "description": "AWS Simple Notification Service",
+    "import_gate": ["boto3"],
+    "detections": [
+      { "match": "client('sns')", "kind": "connection", "protocol": "sns", "confidence": "high", "target_extraction": "none" },
+      { "match": ".publish(", "kind": "connection", "protocol": "sns", "confidence": "medium", "target_extraction": "named_arg:TopicArn" }
+    ]
+  },
+  {
+    "id": "py-boto3-dynamodb",
+    "name": "AWS DynamoDB (boto3)",
+    "description": "AWS DynamoDB",
+    "import_gate": ["boto3"],
+    "detections": [
+      { "match": "client('dynamodb')", "kind": "connection", "protocol": "dynamodb", "confidence": "high", "target_extraction": "none" },
+      { "match": "resource('dynamodb')", "kind": "connection", "protocol": "dynamodb", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "py-elasticsearch",
+    "name": "elasticsearch-py",
+    "description": "Elasticsearch client",
+    "import_gate": ["elasticsearch"],
+    "detections": [
+      { "match": "Elasticsearch(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-modbus",
+    "name": "pymodbus",
+    "description": "Modbus industrial protocol",
+    "import_gate": ["pymodbus"],
+    "detections": [
+      { "match": "ModbusTcpClient(", "kind": "connection", "protocol": "modbus", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "ModbusSerialClient(", "kind": "connection", "protocol": "modbus", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "py-opcua",
+    "name": "opcua / asyncua",
+    "description": "OPC UA industrial protocol",
+    "import_gate": ["opcua", "asyncua"],
+    "detections": [
+      { "match": "Client(", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  }
+]

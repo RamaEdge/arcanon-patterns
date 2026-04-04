@@ -1,0 +1,108 @@
+[
+  {
+    "id": "go-http-client",
+    "name": "net/http client",
+    "description": "Go standard library HTTP client",
+    "import_gate": ["net/http"],
+    "detections": [
+      { "match": "http.Get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "http.Post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "http.NewRequest(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "client.Do(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "go-grpc",
+    "name": "gRPC",
+    "description": "gRPC client dial",
+    "import_gate": ["google.golang.org/grpc"],
+    "detections": [
+      { "match": "grpc.Dial(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "grpc.NewClient(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "go-sarama",
+    "name": "sarama (Kafka)",
+    "description": "Shopify Sarama Kafka client",
+    "import_gate": ["sarama"],
+    "detections": [
+      { "match": "NewSyncProducer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": "NewAsyncProducer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": "NewConsumerGroup(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "go-confluent-kafka",
+    "name": "confluent-kafka-go",
+    "description": "Confluent Kafka Go client",
+    "import_gate": ["confluent-kafka-go"],
+    "detections": [
+      { "match": "NewProducer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": "NewConsumer(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "go-amqp091",
+    "name": "amqp091-go",
+    "description": "RabbitMQ AMQP client",
+    "import_gate": ["amqp091-go", "streadway/amqp"],
+    "detections": [
+      { "match": "amqp.Dial(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "Channel()", "kind": "connection", "protocol": "amqp", "confidence": "medium", "target_extraction": "none" },
+      { "match": ".Publish(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "go-nats",
+    "name": "nats.go",
+    "description": "NATS messaging client",
+    "import_gate": ["nats.go", "github.com/nats-io"],
+    "detections": [
+      { "match": "nats.Connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".Publish(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".Subscribe(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "go-redis",
+    "name": "go-redis",
+    "description": "Redis client for Go",
+    "import_gate": ["go-redis"],
+    "detections": [
+      { "match": "redis.NewClient(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" },
+      { "match": "redis.NewClusterClient(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "go-mongo",
+    "name": "mongo-driver",
+    "description": "MongoDB Go driver",
+    "import_gate": ["go.mongodb.org/mongo-driver"],
+    "detections": [
+      { "match": "mongo.Connect(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "none" },
+      { "match": "ApplyURI(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "go-sql",
+    "name": "database/sql",
+    "description": "Go standard SQL interface",
+    "import_gate": ["database/sql"],
+    "detections": [
+      { "match": "sql.Open(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "sqlx.Connect(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "sqlx.Open(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "go-elasticsearch",
+    "name": "go-elasticsearch",
+    "description": "Official Elasticsearch Go client",
+    "import_gate": ["elastic/go-elasticsearch"],
+    "detections": [
+      { "match": "elasticsearch.NewClient(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" },
+      { "match": "elasticsearch.NewDefaultClient(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" }
+    ]
+  }
+]

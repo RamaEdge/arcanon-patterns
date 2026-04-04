@@ -1,0 +1,15 @@
+{
+  "name": "arcanon-patterns",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Detection patterns for Arcanon Scanner",
+  "scripts": {
+    "validate": "tsx scripts/validate.ts",
+    "build": "tsx scripts/build.ts",
+    "prebuild": "npm run validate"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

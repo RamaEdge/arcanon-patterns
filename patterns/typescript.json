@@ -1,0 +1,204 @@
+[
+  {
+    "id": "ts-axios",
+    "name": "axios",
+    "description": "Axios HTTP client",
+    "import_gate": ["axios"],
+    "detections": [
+      { "match": "axios.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "axios.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "axios.put(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "axios.delete(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "axios.patch(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "axios({", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "named_arg:url" }
+    ]
+  },
+  {
+    "id": "ts-got",
+    "name": "got",
+    "description": "Got HTTP client",
+    "import_gate": ["got"],
+    "detections": [
+      { "match": "got(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "got.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "got.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-ky",
+    "name": "ky",
+    "description": "Ky HTTP client",
+    "import_gate": ["ky"],
+    "detections": [
+      { "match": "ky(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "ky.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "ky.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-superagent",
+    "name": "superagent",
+    "description": "SuperAgent HTTP client",
+    "import_gate": ["superagent"],
+    "detections": [
+      { "match": "superagent.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "superagent.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-fetch",
+    "name": "fetch",
+    "description": "Built-in fetch API",
+    "import_gate": ["fetch("],
+    "detections": [
+      { "match": "fetch(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-kafkajs",
+    "name": "kafkajs",
+    "description": "KafkaJS message broker client",
+    "import_gate": ["kafkajs", "Kafka("],
+    "detections": [
+      { "match": "producer.send(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "named_arg:topic" },
+      { "match": "consumer.subscribe(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "named_arg:topic" }
+    ]
+  },
+  {
+    "id": "ts-amqplib",
+    "name": "amqplib",
+    "description": "RabbitMQ AMQP client",
+    "import_gate": ["amqplib", "amqp"],
+    "detections": [
+      { "match": "channel.publish(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "channel.sendToQueue(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "channel.assertQueue(", "kind": "connection", "protocol": "amqp", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-nats",
+    "name": "nats.ws / nats",
+    "description": "NATS messaging client",
+    "import_gate": ["nats"],
+    "detections": [
+      { "match": "connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".publish(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".subscribe(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-mongoose",
+    "name": "mongoose",
+    "description": "MongoDB ODM",
+    "import_gate": ["mongoose"],
+    "detections": [
+      { "match": "mongoose.connect(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "mongoose.createConnection(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-pg",
+    "name": "pg (node-postgres)",
+    "description": "PostgreSQL client",
+    "import_gate": ["pg", "Pool(", "Client("],
+    "detections": [
+      { "match": "new Pool(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "new Client(", "kind": "connection", "protocol": "postgresql", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-ioredis",
+    "name": "ioredis",
+    "description": "Redis client (ioredis)",
+    "import_gate": ["ioredis", "Redis("],
+    "detections": [
+      { "match": "new Redis(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "new IORedis(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-redis",
+    "name": "redis",
+    "description": "Redis client (node-redis)",
+    "import_gate": ["redis", "createClient"],
+    "detections": [
+      { "match": "createClient(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-prisma",
+    "name": "Prisma",
+    "description": "Prisma ORM",
+    "import_gate": ["PrismaClient"],
+    "detections": [
+      { "match": "new PrismaClient(", "kind": "connection", "protocol": "postgresql", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "ts-typeorm",
+    "name": "TypeORM",
+    "description": "TypeORM database framework",
+    "import_gate": ["DataSource", "typeorm"],
+    "detections": [
+      { "match": "new DataSource(", "kind": "connection", "protocol": "postgresql", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "ts-sequelize",
+    "name": "Sequelize",
+    "description": "Sequelize ORM",
+    "import_gate": ["Sequelize"],
+    "detections": [
+      { "match": "new Sequelize(", "kind": "connection", "protocol": "postgresql", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-mysql2",
+    "name": "mysql2",
+    "description": "MySQL client",
+    "import_gate": ["mysql2", "mysql"],
+    "detections": [
+      { "match": "createConnection(", "kind": "connection", "protocol": "mysql", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "createPool(", "kind": "connection", "protocol": "mysql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-better-sqlite3",
+    "name": "better-sqlite3",
+    "description": "SQLite client",
+    "import_gate": ["better-sqlite3", "Database("],
+    "detections": [
+      { "match": "new Database(", "kind": "connection", "protocol": "sqlite", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-grpc-js",
+    "name": "@grpc/grpc-js",
+    "description": "gRPC client for Node.js",
+    "import_gate": ["@grpc/grpc-js", "grpc"],
+    "detections": [
+      { "match": "credentials.createInsecure(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" },
+      { "match": "credentials.createSsl(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" },
+      { "match": "new Client(", "kind": "connection", "protocol": "grpc", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-bullmq",
+    "name": "BullMQ",
+    "description": "Redis-backed job queue",
+    "import_gate": ["bullmq", "BullMQ", "Queue("],
+    "detections": [
+      { "match": "new Queue(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "new Worker(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "ts-elasticsearch",
+    "name": "@elastic/elasticsearch",
+    "description": "Elasticsearch client",
+    "import_gate": ["@elastic/elasticsearch", "elasticsearch"],
+    "detections": [
+      { "match": "new Client(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "named_arg:node" }
+    ]
+  }
+]

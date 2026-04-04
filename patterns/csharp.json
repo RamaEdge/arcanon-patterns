@@ -1,0 +1,126 @@
+[
+  {
+    "id": "cs-httpclient",
+    "name": "HttpClient",
+    "description": ".NET HttpClient",
+    "import_gate": ["HttpClient", "httpClient"],
+    "detections": [
+      { "match": "httpClient.GetAsync(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpClient.PostAsync(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpClient.PutAsync(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpClient.DeleteAsync(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "httpClient.SendAsync(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "cs-httpclient-factory",
+    "name": "IHttpClientFactory",
+    "description": "Named/typed HTTP client factory",
+    "import_gate": ["AddHttpClient", "IHttpClientFactory"],
+    "detections": [
+      { "match": "AddHttpClient(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-efcore-npgsql",
+    "name": "EF Core (PostgreSQL)",
+    "description": "Entity Framework Core with Npgsql",
+    "import_gate": ["UseNpgsql"],
+    "detections": [
+      { "match": "UseNpgsql(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-efcore-sqlserver",
+    "name": "EF Core (SQL Server)",
+    "description": "Entity Framework Core with SQL Server",
+    "import_gate": ["UseSqlServer"],
+    "detections": [
+      { "match": "UseSqlServer(", "kind": "connection", "protocol": "mssql", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-efcore-sqlite",
+    "name": "EF Core (SQLite)",
+    "description": "Entity Framework Core with SQLite",
+    "import_gate": ["UseSqlite"],
+    "detections": [
+      { "match": "UseSqlite(", "kind": "connection", "protocol": "sqlite", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-masstransit-rabbitmq",
+    "name": "MassTransit (RabbitMQ)",
+    "description": "MassTransit with RabbitMQ transport",
+    "import_gate": ["MassTransit", "UsingRabbitMq"],
+    "detections": [
+      { "match": "UsingRabbitMq(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "cs-masstransit-azure",
+    "name": "MassTransit (Azure Service Bus)",
+    "description": "MassTransit with Azure Service Bus",
+    "import_gate": ["MassTransit", "UsingAzureServiceBus"],
+    "detections": [
+      { "match": "UsingAzureServiceBus(", "kind": "connection", "protocol": "azure-servicebus", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "cs-stackexchange-redis",
+    "name": "StackExchange.Redis",
+    "description": "Redis client for .NET",
+    "import_gate": ["StackExchange.Redis", "ConnectionMultiplexer"],
+    "detections": [
+      { "match": "ConnectionMultiplexer.Connect(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "ConnectionMultiplexer.ConnectAsync(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-mongodb-driver",
+    "name": "MongoDB.Driver",
+    "description": "Official MongoDB .NET driver",
+    "import_gate": ["MongoClient", "MongoDB.Driver"],
+    "detections": [
+      { "match": "new MongoClient(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-grpc",
+    "name": "Grpc.Net.Client",
+    "description": ".NET gRPC client",
+    "import_gate": ["GrpcChannel", "Grpc.Net.Client"],
+    "detections": [
+      { "match": "GrpcChannel.ForAddress(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-nats",
+    "name": "NATS.Net",
+    "description": "NATS client for .NET",
+    "import_gate": ["NATS.Client", "NATS.Net"],
+    "detections": [
+      { "match": "new ConnectionFactory()", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "none" },
+      { "match": "CreateConnection(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "cs-confluent-kafka",
+    "name": "Confluent.Kafka",
+    "description": "Kafka client for .NET",
+    "import_gate": ["Confluent.Kafka", "ProducerBuilder", "ConsumerBuilder"],
+    "detections": [
+      { "match": "new ProducerBuilder", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": "new ConsumerBuilder", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "cs-elasticsearch",
+    "name": "Elastic.Clients.Elasticsearch",
+    "description": "Elasticsearch .NET client",
+    "import_gate": ["ElasticsearchClient", "Elastic.Clients"],
+    "detections": [
+      { "match": "new ElasticsearchClient(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" }
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "rb-faraday",
+    "name": "Faraday",
+    "description": "Faraday HTTP client",
+    "import_gate": ["faraday", "Faraday"],
+    "detections": [
+      { "match": "Faraday.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "Faraday.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "Faraday.new(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-httparty",
+    "name": "HTTParty",
+    "description": "HTTParty HTTP client",
+    "import_gate": ["httparty", "HTTParty"],
+    "detections": [
+      { "match": "HTTParty.get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "HTTParty.post(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-net-http",
+    "name": "Net::HTTP",
+    "description": "Ruby standard library HTTP",
+    "import_gate": ["Net::HTTP"],
+    "detections": [
+      { "match": "Net::HTTP.get(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" },
+      { "match": "Net::HTTP.post(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" },
+      { "match": "Net::HTTP.start(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-bunny",
+    "name": "Bunny",
+    "description": "RabbitMQ client for Ruby",
+    "import_gate": ["bunny", "Bunny"],
+    "detections": [
+      { "match": "Bunny.new(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".publish(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-sidekiq",
+    "name": "Sidekiq",
+    "description": "Redis-backed job queue",
+    "import_gate": ["sidekiq"],
+    "detections": [
+      { "match": ".perform_async(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" },
+      { "match": ".perform_in(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "rb-activejob",
+    "name": "ActiveJob",
+    "description": "Rails job framework",
+    "import_gate": ["activejob", "ActiveJob", "perform_later"],
+    "detections": [
+      { "match": ".perform_later(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "rb-redis",
+    "name": "redis-rb",
+    "description": "Redis client for Ruby",
+    "import_gate": ["redis", "Redis.new"],
+    "detections": [
+      { "match": "Redis.new(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "none" },
+      { "match": "Redis.current", "kind": "connection", "protocol": "redis", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "rb-mongoid",
+    "name": "Mongoid",
+    "description": "MongoDB ODM for Ruby",
+    "import_gate": ["mongoid", "Mongoid"],
+    "detections": [
+      { "match": "Mongoid.configure", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "none" },
+      { "match": "Mongoid::Document", "kind": "connection", "protocol": "mongodb", "confidence": "medium", "target_extraction": "none" }
+    ]
+  },
+  {
+    "id": "rb-ruby-kafka",
+    "name": "ruby-kafka",
+    "description": "Kafka client for Ruby",
+    "import_gate": ["ruby-kafka", "Kafka.new"],
+    "detections": [
+      { "match": "Kafka.new(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
+      { "match": ".deliver_message(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-grpc",
+    "name": "grpc (Ruby)",
+    "description": "gRPC Ruby gem",
+    "import_gate": ["grpc", "GRPC"],
+    "detections": [
+      { "match": "Stub.new(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": "::Stub.new(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-nats",
+    "name": "nats-pure",
+    "description": "NATS client for Ruby",
+    "import_gate": ["nats/client", "NATS"],
+    "detections": [
+      { "match": "NATS.connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
+      { "match": ".publish(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+    ]
+  },
+  {
+    "id": "rb-elasticsearch",
+    "name": "elasticsearch-ruby",
+    "description": "Elasticsearch client for Ruby",
+    "import_gate": ["elasticsearch", "Elasticsearch"],
+    "detections": [
+      { "match": "Elasticsearch::Client.new(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" }
+    ]
+  }
+]
