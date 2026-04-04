@@ -2,3 +2,5 @@ node_modules/
 dist/
 public/v1/patterns.json
 .vercel/
+.vercel
+.env*.local
