@@ -3,11 +3,10 @@
     "id": "rs-reqwest",
     "name": "reqwest",
     "description": "Reqwest HTTP client",
-    "import_gate": ["reqwest"],
+    "import_gate": ["use reqwest", "reqwest::"],
     "detections": [
       { "match": "reqwest::get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "reqwest::Client::new(", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" },
-      { "match": ".get(", "kind": "connection", "protocol": "rest", "confidence": "low", "target_extraction": "first_string_arg" }
+      { "match": "reqwest::Client::builder()", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
     ]
   },
   {
