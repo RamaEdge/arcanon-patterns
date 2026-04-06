@@ -204,7 +204,8 @@
     "import_gate": ["from asyncua import", "from asyncua.", "import asyncua"],
     "detections": [
       { "match": "= Client(", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "named_arg:url" },
-      { "match": "Client(url=", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "named_arg:url" }
+      { "match": "Client(url=", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "named_arg:url" },
+      { "match": "asyncua.Client(", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "first_string_arg" }
     ]
   },
   {
