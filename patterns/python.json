@@ -201,9 +201,23 @@
     "id": "py-opcua",
     "name": "opcua / asyncua",
     "description": "OPC UA industrial protocol",
-    "import_gate": ["opcua", "asyncua"],
+    "import_gate": ["from asyncua import", "from asyncua.", "import asyncua"],
     "detections": [
-      { "match": "Client(", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "first_string_arg" }
+      { "match": "= Client(", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "named_arg:url" },
+      { "match": "Client(url=", "kind": "connection", "protocol": "opcua", "confidence": "high", "target_extraction": "named_arg:url" }
+    ]
+  },
+  {
+    "id": "py-kubernetes",
+    "name": "Kubernetes Python Client",
+    "description": "Kubernetes API client",
+    "import_gate": ["from kubernetes import", "from kubernetes.", "import kubernetes"],
+    "detections": [
+      { "match": "CoreV1Api(", "kind": "connection", "protocol": "kubernetes", "confidence": "high", "target_extraction": "none" },
+      { "match": "AppsV1Api(", "kind": "connection", "protocol": "kubernetes", "confidence": "high", "target_extraction": "none" },
+      { "match": "BatchV1Api(", "kind": "connection", "protocol": "kubernetes", "confidence": "high", "target_extraction": "none" },
+      { "match": "NetworkingV1Api(", "kind": "connection", "protocol": "kubernetes", "confidence": "high", "target_extraction": "none" },
+      { "match": "CustomObjectsApi(", "kind": "connection", "protocol": "kubernetes", "confidence": "high", "target_extraction": "none" }
     ]
   }
 ]
