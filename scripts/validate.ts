@@ -15,6 +15,7 @@ const VALID_EXTRACTIONS = [
   "none",
   "first_string_arg",
   "url_hostname",
+  "env_default",
   // named_arg:<name> is dynamic, checked separately
 ];
 
@@ -67,9 +68,10 @@ for (const file of files) {
       err(file, `Pattern ID '${p.id}' must be lowercase alphanumeric with hyphens`);
     }
 
-    // Import gate
-    if (!Array.isArray(p.import_gate) || p.import_gate.length === 0) {
-      err(file, `Pattern ${p.id} must have non-empty 'import_gate' array`);
+    // Import gate — must be present as an array; empty is allowed for patterns
+    // that match globally available APIs (e.g. process.env, ENV[], IConfiguration)
+    if (!Array.isArray(p.import_gate)) {
+      err(file, `Pattern ${p.id} must have an 'import_gate' array (use [] if no import needed)`);
     }
 
     // Detections

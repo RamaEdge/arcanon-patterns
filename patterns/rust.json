@@ -3,104 +3,288 @@
     "id": "rs-reqwest",
     "name": "reqwest",
     "description": "Reqwest HTTP client",
-    "import_gate": ["use reqwest", "reqwest::"],
+    "import_gate": [
+      "use reqwest",
+      "reqwest::"
+    ],
     "detections": [
-      { "match": "reqwest::get(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "reqwest::Client::builder()", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
+      {
+        "match": "reqwest::get(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "reqwest::Client::builder()",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "medium",
+        "target_extraction": "none"
+      }
     ]
   },
   {
     "id": "rs-tonic",
     "name": "tonic",
     "description": "gRPC client for Rust",
-    "import_gate": ["tonic"],
+    "import_gate": [
+      "tonic"
+    ],
     "detections": [
-      { "match": "Channel::from_static(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "Endpoint::from_static(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "::connect(", "kind": "connection", "protocol": "grpc", "confidence": "medium", "target_extraction": "first_string_arg" }
+      {
+        "match": "Channel::from_static(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "Endpoint::from_static(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "::connect(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "medium",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-lapin",
     "name": "lapin",
     "description": "RabbitMQ AMQP client for Rust",
-    "import_gate": ["lapin"],
+    "import_gate": [
+      "lapin"
+    ],
     "detections": [
-      { "match": "Connection::connect(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "basic_publish(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "Connection::connect(",
+        "kind": "connection",
+        "protocol": "amqp",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "basic_publish(",
+        "kind": "connection",
+        "protocol": "amqp",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-rdkafka",
     "name": "rdkafka",
     "description": "Kafka client for Rust",
-    "import_gate": ["rdkafka"],
+    "import_gate": [
+      "rdkafka"
+    ],
     "detections": [
-      { "match": "FutureProducer", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
-      { "match": "StreamConsumer", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" },
-      { "match": "BaseProducer", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "none" }
+      {
+        "match": "FutureProducer",
+        "kind": "connection",
+        "protocol": "kafka",
+        "confidence": "high",
+        "target_extraction": "none"
+      },
+      {
+        "match": "StreamConsumer",
+        "kind": "connection",
+        "protocol": "kafka",
+        "confidence": "high",
+        "target_extraction": "none"
+      },
+      {
+        "match": "BaseProducer",
+        "kind": "connection",
+        "protocol": "kafka",
+        "confidence": "high",
+        "target_extraction": "none"
+      }
     ]
   },
   {
     "id": "rs-redis",
     "name": "redis-rs",
     "description": "Redis client for Rust",
-    "import_gate": ["redis"],
+    "import_gate": [
+      "redis"
+    ],
     "detections": [
-      { "match": "redis::Client::open(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "Client::open(", "kind": "connection", "protocol": "redis", "confidence": "medium", "target_extraction": "first_string_arg" }
+      {
+        "match": "redis::Client::open(",
+        "kind": "connection",
+        "protocol": "redis",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "Client::open(",
+        "kind": "connection",
+        "protocol": "redis",
+        "confidence": "medium",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-sqlx",
     "name": "sqlx",
     "description": "SQLx async SQL toolkit",
-    "import_gate": ["sqlx"],
+    "import_gate": [
+      "sqlx"
+    ],
     "detections": [
-      { "match": "PgPool::connect(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "MySqlPool::connect(", "kind": "connection", "protocol": "mysql", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "SqlitePool::connect(", "kind": "connection", "protocol": "sqlite", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "Pool::connect(", "kind": "connection", "protocol": "postgresql", "confidence": "medium", "target_extraction": "first_string_arg" }
+      {
+        "match": "PgPool::connect(",
+        "kind": "connection",
+        "protocol": "postgresql",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "MySqlPool::connect(",
+        "kind": "connection",
+        "protocol": "mysql",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "SqlitePool::connect(",
+        "kind": "connection",
+        "protocol": "sqlite",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "Pool::connect(",
+        "kind": "connection",
+        "protocol": "postgresql",
+        "confidence": "medium",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-diesel",
     "name": "diesel",
     "description": "Diesel ORM",
-    "import_gate": ["diesel"],
+    "import_gate": [
+      "diesel"
+    ],
     "detections": [
-      { "match": "PgConnection::establish(", "kind": "connection", "protocol": "postgresql", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "MysqlConnection::establish(", "kind": "connection", "protocol": "mysql", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "SqliteConnection::establish(", "kind": "connection", "protocol": "sqlite", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "PgConnection::establish(",
+        "kind": "connection",
+        "protocol": "postgresql",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "MysqlConnection::establish(",
+        "kind": "connection",
+        "protocol": "mysql",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "SqliteConnection::establish(",
+        "kind": "connection",
+        "protocol": "sqlite",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-mongodb",
     "name": "mongodb",
     "description": "MongoDB Rust driver",
-    "import_gate": ["mongodb"],
+    "import_gate": [
+      "mongodb"
+    ],
     "detections": [
-      { "match": "Client::with_uri_str(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "Client::with_options(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "none" }
+      {
+        "match": "Client::with_uri_str(",
+        "kind": "connection",
+        "protocol": "mongodb",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "Client::with_options(",
+        "kind": "connection",
+        "protocol": "mongodb",
+        "confidence": "high",
+        "target_extraction": "none"
+      }
     ]
   },
   {
     "id": "rs-async-nats",
     "name": "async-nats",
     "description": "NATS client for Rust",
-    "import_gate": ["async-nats", "async_nats"],
+    "import_gate": [
+      "async-nats",
+      "async_nats"
+    ],
     "detections": [
-      { "match": "nats::connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "async_nats::connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "nats::connect(",
+        "kind": "connection",
+        "protocol": "nats",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "async_nats::connect(",
+        "kind": "connection",
+        "protocol": "nats",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "rs-tokio-modbus",
     "name": "tokio-modbus",
     "description": "Modbus industrial protocol",
-    "import_gate": ["tokio_modbus", "tokio-modbus"],
+    "import_gate": [
+      "tokio_modbus",
+      "tokio-modbus"
+    ],
     "detections": [
-      { "match": "tcp::connect(", "kind": "connection", "protocol": "modbus", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "tcp::connect(",
+        "kind": "connection",
+        "protocol": "modbus",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
+    ]
+  },
+  {
+    "id": "rs-env-var",
+    "name": "env::var",
+    "description": "Rust std::env::var \u2014 extracts default from .unwrap_or()",
+    "import_gate": [
+      "use std::env"
+    ],
+    "detections": [
+      {
+        "match": "env::var(",
+        "kind": "connection",
+        "protocol": "env",
+        "confidence": "low",
+        "target_extraction": "env_default"
+      }
     ]
   }
 ]

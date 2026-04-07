@@ -3,113 +3,325 @@
     "id": "java-resttemplate",
     "name": "RestTemplate",
     "description": "Spring RestTemplate HTTP client (legacy)",
-    "import_gate": ["RestTemplate"],
+    "import_gate": [
+      "RestTemplate"
+    ],
     "detections": [
-      { "match": "restTemplate.getForObject(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "restTemplate.getForEntity(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "restTemplate.postForObject(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "restTemplate.postForEntity(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "restTemplate.exchange(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "restTemplate.getForObject(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "restTemplate.getForEntity(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "restTemplate.postForObject(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "restTemplate.postForEntity(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "restTemplate.exchange(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "java-webclient",
     "name": "WebClient",
     "description": "Spring WebFlux reactive HTTP client",
-    "import_gate": ["WebClient"],
+    "import_gate": [
+      "WebClient"
+    ],
     "detections": [
-      { "match": "WebClient.create(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "WebClient.builder()", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" },
-      { "match": "webClient.get()", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" },
-      { "match": "webClient.post()", "kind": "connection", "protocol": "rest", "confidence": "medium", "target_extraction": "none" }
+      {
+        "match": "WebClient.create(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "WebClient.builder()",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "medium",
+        "target_extraction": "none"
+      },
+      {
+        "match": "webClient.get()",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "medium",
+        "target_extraction": "none"
+      },
+      {
+        "match": "webClient.post()",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "medium",
+        "target_extraction": "none"
+      }
     ]
   },
   {
     "id": "java-feign",
     "name": "FeignClient",
     "description": "Spring Cloud OpenFeign declarative HTTP client",
-    "import_gate": ["FeignClient"],
+    "import_gate": [
+      "FeignClient"
+    ],
     "detections": [
-      { "match": "@FeignClient(", "kind": "connection", "protocol": "rest", "confidence": "high", "target_extraction": "named_arg:name" }
+      {
+        "match": "@FeignClient(",
+        "kind": "connection",
+        "protocol": "rest",
+        "confidence": "high",
+        "target_extraction": "named_arg:name"
+      }
     ]
   },
   {
     "id": "java-kafka",
     "name": "Spring Kafka",
     "description": "Apache Kafka via Spring",
-    "import_gate": ["kafkaTemplate", "KafkaTemplate", "KafkaListener"],
+    "import_gate": [
+      "kafkaTemplate",
+      "KafkaTemplate",
+      "KafkaListener"
+    ],
     "detections": [
-      { "match": "kafkaTemplate.send(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "@KafkaListener(", "kind": "connection", "protocol": "kafka", "confidence": "high", "target_extraction": "named_arg:topics" }
+      {
+        "match": "kafkaTemplate.send(",
+        "kind": "connection",
+        "protocol": "kafka",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "@KafkaListener(",
+        "kind": "connection",
+        "protocol": "kafka",
+        "confidence": "high",
+        "target_extraction": "named_arg:topics"
+      }
     ]
   },
   {
     "id": "java-rabbitmq",
     "name": "Spring AMQP / RabbitMQ",
     "description": "RabbitMQ via Spring AMQP",
-    "import_gate": ["rabbitTemplate", "RabbitTemplate", "RabbitListener"],
+    "import_gate": [
+      "rabbitTemplate",
+      "RabbitTemplate",
+      "RabbitListener"
+    ],
     "detections": [
-      { "match": "rabbitTemplate.convertAndSend(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "@RabbitListener(", "kind": "connection", "protocol": "amqp", "confidence": "high", "target_extraction": "named_arg:queues" }
+      {
+        "match": "rabbitTemplate.convertAndSend(",
+        "kind": "connection",
+        "protocol": "amqp",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "@RabbitListener(",
+        "kind": "connection",
+        "protocol": "amqp",
+        "confidence": "high",
+        "target_extraction": "named_arg:queues"
+      }
     ]
   },
   {
     "id": "java-grpc",
     "name": "gRPC Java",
     "description": "gRPC stubs",
-    "import_gate": ["Grpc."],
+    "import_gate": [
+      "Grpc."
+    ],
     "detections": [
-      { "match": "Grpc.newBlockingStub(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" },
-      { "match": "Grpc.newStub(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" },
-      { "match": "Grpc.newFutureStub(", "kind": "connection", "protocol": "grpc", "confidence": "high", "target_extraction": "none" }
+      {
+        "match": "Grpc.newBlockingStub(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "high",
+        "target_extraction": "none"
+      },
+      {
+        "match": "Grpc.newStub(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "high",
+        "target_extraction": "none"
+      },
+      {
+        "match": "Grpc.newFutureStub(",
+        "kind": "connection",
+        "protocol": "grpc",
+        "confidence": "high",
+        "target_extraction": "none"
+      }
     ]
   },
   {
     "id": "java-jedis",
     "name": "Jedis",
     "description": "Redis client for Java",
-    "import_gate": ["Jedis", "jedis"],
+    "import_gate": [
+      "Jedis",
+      "jedis"
+    ],
     "detections": [
-      { "match": "new Jedis(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "new JedisPool(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "new Jedis(",
+        "kind": "connection",
+        "protocol": "redis",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "new JedisPool(",
+        "kind": "connection",
+        "protocol": "redis",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "java-lettuce",
     "name": "Lettuce",
     "description": "Reactive Redis client for Java",
-    "import_gate": ["RedisClient", "lettuce"],
+    "import_gate": [
+      "RedisClient",
+      "lettuce"
+    ],
     "detections": [
-      { "match": "RedisClient.create(", "kind": "connection", "protocol": "redis", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "RedisClient.create(",
+        "kind": "connection",
+        "protocol": "redis",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "java-mongo",
     "name": "MongoDB Java Driver",
     "description": "Official MongoDB driver",
-    "import_gate": ["MongoClient", "mongodb"],
+    "import_gate": [
+      "MongoClient",
+      "mongodb"
+    ],
     "detections": [
-      { "match": "MongoClients.create(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" },
-      { "match": "new MongoClient(", "kind": "connection", "protocol": "mongodb", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "MongoClients.create(",
+        "kind": "connection",
+        "protocol": "mongodb",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      },
+      {
+        "match": "new MongoClient(",
+        "kind": "connection",
+        "protocol": "mongodb",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "java-nats",
     "name": "nats.java",
     "description": "NATS messaging client for Java",
-    "import_gate": ["io.nats", "Nats.connect"],
+    "import_gate": [
+      "io.nats",
+      "Nats.connect"
+    ],
     "detections": [
-      { "match": "Nats.connect(", "kind": "connection", "protocol": "nats", "confidence": "high", "target_extraction": "first_string_arg" }
+      {
+        "match": "Nats.connect(",
+        "kind": "connection",
+        "protocol": "nats",
+        "confidence": "high",
+        "target_extraction": "first_string_arg"
+      }
     ]
   },
   {
     "id": "java-elasticsearch",
     "name": "Elasticsearch Java",
     "description": "Elasticsearch client",
-    "import_gate": ["RestHighLevelClient", "ElasticsearchClient", "elasticsearch"],
+    "import_gate": [
+      "RestHighLevelClient",
+      "ElasticsearchClient",
+      "elasticsearch"
+    ],
     "detections": [
-      { "match": "new RestHighLevelClient(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" },
-      { "match": "ElasticsearchClient(", "kind": "connection", "protocol": "elasticsearch", "confidence": "high", "target_extraction": "none" }
+      {
+        "match": "new RestHighLevelClient(",
+        "kind": "connection",
+        "protocol": "elasticsearch",
+        "confidence": "high",
+        "target_extraction": "none"
+      },
+      {
+        "match": "ElasticsearchClient(",
+        "kind": "connection",
+        "protocol": "elasticsearch",
+        "confidence": "high",
+        "target_extraction": "none"
+      }
+    ]
+  },
+  {
+    "id": "java-env-value",
+    "name": "@Value annotation",
+    "description": "Spring @Value \u2014 extracts default from ${VAR:default} syntax",
+    "import_gate": [],
+    "detections": [
+      {
+        "match": "@Value(\"${",
+        "kind": "connection",
+        "protocol": "env",
+        "confidence": "low",
+        "target_extraction": "env_default"
+      }
+    ]
+  },
+  {
+    "id": "java-env-getenv",
+    "name": "System.getenv",
+    "description": "Java System.getenv \u2014 tier-1 hint only (no default syntax)",
+    "import_gate": [],
+    "detections": [
+      {
+        "match": "System.getenv(",
+        "kind": "connection",
+        "protocol": "env",
+        "confidence": "low",
+        "target_extraction": "env_default"
+      }
     ]
   }
 ]

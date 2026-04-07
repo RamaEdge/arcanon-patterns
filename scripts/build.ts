@@ -53,7 +53,7 @@ function build(): void {
 
     // Validate
     for (const pattern of patterns) {
-      if (!pattern.id || !pattern.name || !pattern.import_gate?.length) {
+      if (!pattern.id || !pattern.name || !Array.isArray(pattern.import_gate)) {
         throw new Error(
           `Invalid pattern in ${file}: ${JSON.stringify(pattern)}`
         );
